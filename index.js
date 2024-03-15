@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/api/notes',noteRoutes)
 
 app.listen(port,()=>{
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port http://localhost:${port}`);
 });
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{

@@ -12,9 +12,9 @@ export const getAllNote = async (req,res)=>{
 
 export const createNote = async (req,res)=>{
     try{
-        const {title,description} = req.body
+        const {title,description,date} = req.body
 
-        const newNote = new Notes({title,description,date:Date()})
+        const newNote = new Notes({title,description,date:Date(date)})
 
         const saveNote = await newNote.save()
         res.status(201).json(saveNote)
@@ -26,11 +26,10 @@ export const createNote = async (req,res)=>{
 export const updateNote = async (req,res)=>{
     try{
         const {title,description} = req.body
-        const note = await Notes.findById(req.parames.id)
+        const note = await Notes.findById(req.params.id);
         if(note){
             note.title = title
-            note.description = description
-            note.date = new Date()
+            note.description = description            
             const saveNote = await note.save()
             res.status(200).json(saveNote)
         }       
